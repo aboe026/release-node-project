@@ -16,6 +16,7 @@ describe('Lint Release Notes', () => {
       expect(optionSpy.mock.calls).toEqual([
         [LintReleaseNotes.options.NotesFile.key, LintReleaseNotes.options.NotesFile.value],
         [LintReleaseNotes.options.PackageFile.key, LintReleaseNotes.options.PackageFile.value],
+        [LintReleaseNotes.options.StripSuffix.key, LintReleaseNotes.options.StripSuffix.value],
       ])
     })
     it('handler calls to lint', async () => {

@@ -1,6 +1,7 @@
 import { JTDSchemaType } from 'ajv/dist/jtd'
 import { Arguments, Argv, CommandModule } from 'yargs'
 import { schema as ReleaseNotesSchema } from './release-note'
+import semver from 'semver'
 
 import FileUtil from './file-util'
 import Option from './option'
@@ -37,6 +38,19 @@ export default class LintReleaseNotes {
         nargs: 1,
       },
     }),
+    StripSuffix: new Option({
+      key: 'strip-suffix',
+      value: {
+        alias: ['s', 'suffix'],
+        description:
+          'Whether or not semver suffixes (pre-release, build meta) are removed from the semver in the package.json version',
+        type: 'boolean',
+        default: true,
+        demandOption: false,
+        requiresArg: false,
+        nargs: 1,
+      },
+    }),
   }
 
   /**
@@ -52,10 +66,12 @@ export default class LintReleaseNotes {
       builder: (yargs: Argv) =>
         yargs
           .option(LintReleaseNotes.options.NotesFile.key, LintReleaseNotes.options.NotesFile.value)
-          .option(LintReleaseNotes.options.PackageFile.key, LintReleaseNotes.options.PackageFile.value),
+          .option(LintReleaseNotes.options.PackageFile.key, LintReleaseNotes.options.PackageFile.value)
+          .option(LintReleaseNotes.options.StripSuffix.key, LintReleaseNotes.options.StripSuffix.value),
       handler: async (argv: Arguments) => {
         const notesFile = Option.getStringValue(argv, LintReleaseNotes.options.NotesFile)
         const packageJsonFile = Option.getStringValue(argv, LintReleaseNotes.options.PackageFile)
+        const stripSuffix = Option.getBooleanValue(argv, LintReleaseNotes.options.StripSuffix)
 
         const notesFilePath = await FileUtil.validateFile(notesFile, LintReleaseNotes.options.NotesFile.key)
         const packageJsonFilePath = await FileUtil.validateFile(
@@ -63,7 +79,7 @@ export default class LintReleaseNotes {
           LintReleaseNotes.options.PackageFile.key
         )
 
-        await LintReleaseNotes.lint(notesFilePath, packageJsonFilePath)
+        await LintReleaseNotes.lint(notesFilePath, packageJsonFilePath, stripSuffix)
       },
     }
   }
@@ -74,9 +90,22 @@ export default class LintReleaseNotes {
    * @param notesFilePath The path on the system which exports the release notes array
    * @param packageJsonFilePath The path on the system of the package.json file
    */
-  static async lint(notesFilePath: string, packageJsonFilePath: string) {
+  static async lint(notesFilePath: string, packageJsonFilePath: string, stripSuffix = true) {
     const releaseNotes = await FileUtil.getJsonFromFile(notesFilePath, ReleaseNotesSchema)
-    const { version } = await FileUtil.getJsonFromFile(packageJsonFilePath, PackageJsonSchema)
+    let { version } = await FileUtil.getJsonFromFile(packageJsonFilePath, PackageJsonSchema)
+
+    if (stripSuffix) {
+      if (!semver.valid(version)) {
+        throw Error(`Invalid version "${version}" found in "${packageJsonFilePath}": Not a valid semantic version`)
+      }
+      const noSuffixVersion = `${semver.major(version)}.${semver.minor(version)}.${semver.patch(version)}`
+      if (version !== noSuffixVersion) {
+        console.log(
+          `Removing suffixes from package.json version "${version}" to be just "${noSuffixVersion}" due to "${LintReleaseNotes.options.StripSuffix.key}" option value of "true"`
+        )
+        version = noSuffixVersion
+      }
+    }
 
     let notesFound = false
     for (const note of releaseNotes) {
