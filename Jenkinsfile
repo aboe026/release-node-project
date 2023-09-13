@@ -6,6 +6,7 @@ node {
     def repoName = 'release-node-project'
     def workDir = "${WORKSPACE}/${env.BRANCH_NAME}-${env.BUILD_ID}"
     def nodeImage = 'node:18'
+    def groovyLintImage = 'nvuillam/npm-groovy-lint'
     def badges = new ShieldsIoBadges(this, repoName)
     def releaseBranchRegex = /^\d+\.\d+$/
     def isLatest = env.BRANCH_NAME == 'main'
@@ -30,10 +31,12 @@ node {
                             json: packageJson,
                             pretty: 2
                         )
+                        groovyLintImage += ":${packageJson.devDependencies.npm-groovy-lint}"
                         currentBuild.displayName = packageJson.version
                     }
                     stage('Pull Images') {
                         sh "docker pull ${nodeImage}"
+                        sh "docker pull ${groovyLintImage}"
                     }
 
                     docker.image(nodeImage).inside {
@@ -44,7 +47,17 @@ node {
                         }
 
                         stage('Lint') {
-                            sh 'yarn lint'
+                            parallel(
+                                'node': {
+                                    sh 'yarn lint-node'
+                                    sh 'yarn lint-release-notes'
+                                },
+                                'groovy': {
+                                    docker.image(groovyLintImage).inside {
+                                        sh 'npm-groovy-lint --ignorepattern "**/node_modules/**" --failon info'
+                                    }
+                                }
+                            )
                         }
 
                         stage('Build') {
