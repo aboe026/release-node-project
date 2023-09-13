@@ -1,0 +1,33 @@
+{
+  "id" : "ec014f89-31a2-3f9a-8a5a-5ed0b1c13ae1",
+  "request" : {
+    "url" : "/repos/aboe026/release-node-project-e2e-testing-43116c9f0b28010794d65434736fcfd2/releases/119867306/assets?name=deliverable.txt&",
+    "method" : "POST",
+    "bodyPatterns" : [ {
+      "equalTo" : "Hello World!"
+    } ]
+  },
+  "response" : {
+    "status" : 201,
+    "bodyFileName" : "body-repos-aboe026-release-node-project-e2e-testing-43116c9f0b28010794d65434736fcfd2-releases-119867306-assets-DsHbV.json",
+    "headers" : {
+      "Cache-Control" : "no-cache",
+      "Content-Security-Policy" : "default-src 'none'",
+      "Content-Type" : "application/json; charset=utf-8",
+      "ETag" : "W/\"68f3b58ad94baf629b737ec4a269777a44e3100ad7a616e3842f0041e7621d8c\"",
+      "Last-Modified" : "Mon, 04 Sep 2023 23:48:24 GMT",
+      "Strict-Transport-Security" : "max-age=31557600",
+      "Vary" : "Accept, Authorization, Cookie, X-GitHub-OTP",
+      "X-Accepted-OAuth-Scopes" : "repo",
+      "X-Content-Type-Options" : "nosniff",
+      "X-Frame-Options" : "deny",
+      "X-GitHub-Media-Type" : "github.v3; format=json",
+      "x-github-tenant" : "",
+      "X-OAuth-Scopes" : "delete_repo, repo",
+      "X-XSS-Protection" : "1; mode=block",
+      "Date" : "Mon, 04 Sep 2023 23:48:24 GMT",
+      "X-GitHub-Request-Id" : "F15A:9F08:120EE2:15EEFB:64F66CC7"
+    }
+  },
+  "uuid" : "ec014f89-31a2-3f9a-8a5a-5ed0b1c13ae1"
+}

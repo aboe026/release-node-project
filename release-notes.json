@@ -1,0 +1,7 @@
+[
+  {
+    "version": "0.1.0",
+    "description": "Initial Release",
+    "features": ["Lint release notes", "Create GitHub release"]
+  }
+]

@@ -1,0 +1,71 @@
+{
+  "name": "@aboe026/release-node-project",
+  "version": "0.1.0",
+  "author": {
+    "name": "Adam Boe",
+    "email": "adamboe@outlook.com"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">=18"
+  },
+  "bin": "./executable.js",
+  "files": [
+    "build/**"
+  ],
+  "scripts": {
+    "build": "tsc --build",
+    "clean": "rimraf build",
+    "coverage-view": "ts-node scripts/view-coverage.ts coverage/lcov-report/index.html",
+    "lint": "npm-run-all lint-node lint-groovy lint-release-notes",
+    "lint-fix": "npm-run-all lint-node-fix lint-groovy-fix",
+    "lint-groovy": "npm-groovy-lint --ignorepattern '**/node_modules/**' --failon info",
+    "lint-groovy-fix": "yarn lint-groovy --fix",
+    "lint-node": "eslint . && prettier --check .",
+    "lint-node-fix": "eslint --fix . && prettier --write .",
+    "lint-release-notes": "ts-node src/index.ts lint",
+    "run-built": "node executable.js",
+    "start": "ts-node src/index.ts",
+    "test": "yarn lint && yarn test-unit && yarn test-e2e-playback",
+    "test-e2e": "jest test/e2e --config=jest.config.e2e.ts",
+    "test-e2e-record": "cross-env E2E_WIREMOCK_MODE=record yarn test-e2e",
+    "test-e2e-playback": "cross-env E2E_WIREMOCK_MODE=playback yarn test-e2e",
+    "test-e2e-ci": "cross-env TEST_RESULT_NAME=e2e yarn test-e2e-playback",
+    "test-unit": "jest test/unit",
+    "test-unit-ci": "cross-env TEST_RESULT_NAME=unit yarn test-unit",
+    "watch": "yarn build --watch"
+  },
+  "dependencies": {
+    "@octokit/rest": "19.0.13",
+    "ajv": "8.12.0",
+    "yargs": "17.7.2"
+  },
+  "devDependencies": {
+    "@octokit/types": "11.1.0",
+    "@types/fs-extra": "11.0.1",
+    "@types/jest": "29.5.2",
+    "@types/node": "20.3.3",
+    "@types/uuid": "9.0.2",
+    "@types/yargs": "17.0.24",
+    "@typescript-eslint/eslint-plugin": "5.60.1",
+    "@typescript-eslint/parser": "5.60.1",
+    "cross-env": "7.0.3",
+    "dotenv": "16.3.1",
+    "envalid": "7.3.1",
+    "eslint": "8.44.0",
+    "eslint-config-prettier": "8.8.0",
+    "eslint-plugin-prettier": "4.2.1",
+    "fs-extra": "11.1.1",
+    "jest": "29.5.0",
+    "jest-junit": "16.0.0",
+    "npm-groovy-lint": "11.1.1",
+    "npm-run-all": "4.1.5",
+    "open": "8.4.2",
+    "prettier": "2.8.8",
+    "rimraf": "5.0.1",
+    "ts-jest": "29.1.1",
+    "ts-node": "10.9.1",
+    "typescript": "5.1.6"
+  },
+  "packageManager": "yarn@3.6.1"
+}
