@@ -31,7 +31,7 @@ node {
                             json: packageJson,
                             pretty: 2
                         )
-                        groovyLintImage += ":${packageJson.devDependencies.npm-groovy-lint}"
+                        groovyLintImage += ":${packageJson.devDependencies['npm-groovy-lint']}"
                         currentBuild.displayName = packageJson.version
                     }
                     stage('Pull Images') {
