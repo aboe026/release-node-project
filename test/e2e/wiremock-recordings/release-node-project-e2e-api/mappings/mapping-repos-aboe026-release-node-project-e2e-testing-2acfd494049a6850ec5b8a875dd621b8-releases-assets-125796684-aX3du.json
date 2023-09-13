@@ -1,0 +1,34 @@
+{
+  "id" : "3e6f2afc-7a37-3c30-9593-e9d4a62e8669",
+  "request" : {
+    "url" : "/repos/aboe026/release-node-project-e2e-testing-2acfd494049a6850ec5b8a875dd621b8/releases/assets/125796684",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 302,
+    "bodyFileName" : "body-repos-aboe026-release-node-project-e2e-testing-2acfd494049a6850ec5b8a875dd621b8-releases-assets-125796684-aX3du.txt",
+    "headers" : {
+      "Server" : "GitHub.com",
+      "Date" : "Wed, 13 Sep 2023 05:09:38 GMT",
+      "Content-Type" : "text/html;charset=utf-8",
+      "Location" : "https://objects.githubusercontent.com/github-production-release-asset-2e65be/690891910/5eea4f5c-cb10-4f78-8656-69ea109fe1ae?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAIWNJYAX4CSVEH53A%2F20230913%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20230913T050938Z&X-Amz-Expires=300&X-Amz-Signature=1cabb5b7b8717a8f0460aac8119aec2f78217d4132d646214bfc416cc909e91e&X-Amz-SignedHeaders=host&actor_id=11340779&key_id=0&repo_id=690891910&response-content-disposition=attachment%3B%20filename%3Ddeliverable.txt&response-content-type=application%2Foctet-stream",
+      "x-github-api-version-selected" : "2022-11-28",
+      "X-RateLimit-Limit" : "5000",
+      "X-RateLimit-Remaining" : "4904",
+      "X-RateLimit-Reset" : "1694583289",
+      "X-RateLimit-Used" : "96",
+      "X-RateLimit-Resource" : "core",
+      "Access-Control-Expose-Headers" : "ETag, Link, Location, Retry-After, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Used, X-RateLimit-Resource, X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval, X-GitHub-Media-Type, X-GitHub-SSO, X-GitHub-Request-Id, Deprecation, Sunset",
+      "Access-Control-Allow-Origin" : "*",
+      "Strict-Transport-Security" : "max-age=31536000; includeSubdomains; preload",
+      "X-Frame-Options" : "deny",
+      "X-Content-Type-Options" : "nosniff",
+      "X-XSS-Protection" : "0",
+      "Referrer-Policy" : "origin-when-cross-origin, strict-origin-when-cross-origin",
+      "Content-Security-Policy" : "default-src 'none'",
+      "Vary" : "Accept-Encoding, Accept, X-Requested-With",
+      "X-GitHub-Request-Id" : "DD10:094E:4474CBB:46665DB:65014412"
+    }
+  },
+  "uuid" : "3e6f2afc-7a37-3c30-9593-e9d4a62e8669"
+}

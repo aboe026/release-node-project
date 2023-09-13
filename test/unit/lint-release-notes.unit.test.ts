@@ -28,6 +28,7 @@ describe('Lint Release Notes', () => {
         .spyOn(Option, 'getStringValue')
         .mockReturnValueOnce(notesFileName)
         .mockReturnValueOnce(packageFileName)
+      const getBooleanValueSpy = jest.spyOn(Option, 'getBooleanValue').mockReturnValue(false)
       const validateFileSpy = jest
         .spyOn(FileUtil, 'validateFile')
         .mockResolvedValueOnce(notesFilePath)
@@ -41,15 +42,41 @@ describe('Lint Release Notes', () => {
         [yargs.argv, LintReleaseNotes.options.NotesFile],
         [yargs.argv, LintReleaseNotes.options.PackageFile],
       ])
+      expect(getBooleanValueSpy.mock.calls).toEqual([[yargs.argv, LintReleaseNotes.options.StripSuffix]])
       expect(validateFileSpy.mock.calls).toEqual([
         [notesFileName, LintReleaseNotes.options.NotesFile.key],
         [packageFileName, LintReleaseNotes.options.PackageFile.key],
       ])
-      expect(lintSpy.mock.calls).toEqual([[notesFilePath, packageFilePath]])
+      expect(lintSpy.mock.calls).toEqual([[notesFilePath, packageFilePath, false]])
     })
   })
 
   describe('lint', () => {
+    it('throws error if stripSuffix true and invalid semver in package json', async () => {
+      const notesPath = 'custom-notes.json'
+      const packagePath = 'custom-package.json'
+      const notes: ReleaseNote[] = [
+        {
+          version: '1.0.0',
+        },
+      ]
+      const packageJson: PackageJson = {
+        version: 'toast',
+      }
+      const getJsonFromFileSpy = jest
+        .spyOn(FileUtil, 'getJsonFromFile')
+        .mockResolvedValueOnce(notes)
+        .mockResolvedValueOnce(packageJson)
+
+      await expect(LintReleaseNotes.lint(notesPath, packagePath, true)).rejects.toThrow(
+        `Invalid version "${packageJson.version}" found in "${packagePath}": Not a valid semantic version`
+      )
+
+      expect(getJsonFromFileSpy.mock.calls).toEqual([
+        [notesPath, ReleaseNotesSchema],
+        [packagePath, PackageJsonSchema],
+      ])
+    })
     it('throws error if no release note found for package version', async () => {
       const notesPath = 'custom-notes.json'
       const packagePath = 'custom-package.json'
@@ -129,6 +156,37 @@ describe('Lint Release Notes', () => {
         [packagePath, PackageJsonSchema],
       ])
       expect(consoleLogSpy.mock.calls).toEqual([['Release notes valid :)']])
+    })
+    it('prints success message if package version needs suffix stripped', async () => {
+      const notesPath = 'custom-notes.json'
+      const packagePath = 'custom-package.json'
+      const version = '1.0.0-1'
+      const notes: ReleaseNote[] = [
+        {
+          version: '1.0.0',
+        },
+      ]
+      const packageJson: PackageJson = {
+        version,
+      }
+      const getJsonFromFileSpy = jest
+        .spyOn(FileUtil, 'getJsonFromFile')
+        .mockResolvedValueOnce(notes)
+        .mockResolvedValueOnce(packageJson)
+      const consoleLogSpy = jest.spyOn(console, 'log').mockImplementation()
+
+      await expect(LintReleaseNotes.lint(notesPath, packagePath, true)).resolves.toEqual(undefined)
+
+      expect(getJsonFromFileSpy.mock.calls).toEqual([
+        [notesPath, ReleaseNotesSchema],
+        [packagePath, PackageJsonSchema],
+      ])
+      expect(consoleLogSpy.mock.calls).toEqual([
+        [
+          `Removing suffixes from package.json version "${version}" to be just "${notes[0].version}" due to "strip-suffix" option value of "true"`,
+        ],
+        ['Release notes valid :)'],
+      ])
     })
   })
 })

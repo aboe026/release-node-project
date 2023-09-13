@@ -39,6 +39,12 @@ node {
                         sh "docker pull ${groovyLintImage}"
                     }
 
+                    stage('Lint Groovy') {
+                        docker.image(groovyLintImage).inside('--entrypoint=""') {
+                            sh 'npm-groovy-lint --ignorepattern "**/node_modules/**" --failon info'
+                        }
+                    }
+
                     docker.image(nodeImage).inside {
                         stage('Install') {
                             sh 'node --version'
@@ -46,18 +52,9 @@ node {
                             sh 'yarn install --immutable'
                         }
 
-                        stage('Lint') {
-                            parallel(
-                                'node': {
-                                    sh 'yarn lint-node'
-                                    sh 'yarn lint-release-notes'
-                                },
-                                'groovy': {
-                                    docker.image(groovyLintImage).inside {
-                                        sh 'npm-groovy-lint --ignorepattern "**/node_modules/**" --failon info'
-                                    }
-                                }
-                            )
+                        stage('Lint Node') {
+                            sh 'yarn lint-node'
+                            sh 'yarn lint-release-notes'
                         }
 
                         stage('Build') {
@@ -93,7 +90,12 @@ node {
 
                         stage('E2E Test') {
                             try {
-                                sh 'yarn test-e2e-ci'
+                                withEnv([
+                                    'E2E_GITHUB_ORG=aboe026',
+                                    'E2E_GITHUB_PAT=dummy' // this is not actually used because running through WireMock
+                                ]) {
+                                    sh 'yarn test-e2e-ci'
+                                }
                             } catch (err) {
                                 exceptionThrown = true
                                 println 'Exception was caught in try block of "E2E Test" stage:'

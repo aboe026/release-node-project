@@ -1,0 +1,39 @@
+{
+  "id" : "4151cf6e-0cfd-3e59-8f91-312f9b6ead3b",
+  "request" : {
+    "url" : "/repos/aboe026/release-node-project-e2e-testing-f1e086660d47777fede23b1bc6e0d7aa/releases/latest",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-repos-aboe026-release-node-project-e2e-testing-f1e086660d47777fede23b1bc6e0d7aa-releases-latest-n87iW.json",
+    "headers" : {
+      "Server" : "GitHub.com",
+      "Date" : "Wed, 13 Sep 2023 05:09:17 GMT",
+      "Content-Type" : "application/json; charset=utf-8",
+      "Cache-Control" : "private, max-age=60, s-maxage=60",
+      "Vary" : [ "Accept, Authorization, Cookie, X-GitHub-OTP", "Accept-Encoding, Accept, X-Requested-With" ],
+      "ETag" : "W/\"59e3f2cb8468a644c74fd615f00395310488ed3ffb73c20dcf5a20cce888da5d\"",
+      "Last-Modified" : "Wed, 13 Sep 2023 05:09:14 GMT",
+      "X-OAuth-Scopes" : "delete_repo, repo",
+      "X-Accepted-OAuth-Scopes" : "repo",
+      "X-GitHub-Media-Type" : "github.v3; format=json",
+      "x-github-api-version-selected" : "2022-11-28",
+      "X-RateLimit-Limit" : "5000",
+      "X-RateLimit-Remaining" : "4930",
+      "X-RateLimit-Reset" : "1694583289",
+      "X-RateLimit-Used" : "70",
+      "X-RateLimit-Resource" : "core",
+      "Access-Control-Expose-Headers" : "ETag, Link, Location, Retry-After, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Used, X-RateLimit-Resource, X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval, X-GitHub-Media-Type, X-GitHub-SSO, X-GitHub-Request-Id, Deprecation, Sunset",
+      "Access-Control-Allow-Origin" : "*",
+      "Strict-Transport-Security" : "max-age=31536000; includeSubdomains; preload",
+      "X-Frame-Options" : "deny",
+      "X-Content-Type-Options" : "nosniff",
+      "X-XSS-Protection" : "0",
+      "Referrer-Policy" : "origin-when-cross-origin, strict-origin-when-cross-origin",
+      "Content-Security-Policy" : "default-src 'none'",
+      "X-GitHub-Request-Id" : "D50D:8B84:444FCF6:464159E:650143FD"
+    }
+  },
+  "uuid" : "4151cf6e-0cfd-3e59-8f91-312f9b6ead3b"
+}

@@ -1,0 +1,38 @@
+{
+  "id" : "94e8ab9f-d98d-30c0-bc1e-c49b78f991f6",
+  "request" : {
+    "url" : "/repos/aboe026/release-node-project-e2e-testing-8dc11c502683da989d4c77a570541b93/releases",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-repos-aboe026-release-node-project-e2e-testing-8dc11c502683da989d4c77a570541b93-releases-XMf04.json",
+    "headers" : {
+      "Server" : "GitHub.com",
+      "Date" : "Wed, 13 Sep 2023 05:08:19 GMT",
+      "Content-Type" : "application/json; charset=utf-8",
+      "Cache-Control" : "private, max-age=60, s-maxage=60",
+      "Vary" : [ "Accept, Authorization, Cookie, X-GitHub-OTP", "Accept-Encoding, Accept, X-Requested-With" ],
+      "ETag" : "\"5b88dbad010f3642c39c87d923a2daec67437ce3847968e8821c9a9a5dbcf689\"",
+      "X-OAuth-Scopes" : "delete_repo, repo",
+      "X-Accepted-OAuth-Scopes" : "repo",
+      "X-GitHub-Media-Type" : "github.v3; format=json",
+      "x-github-api-version-selected" : "2022-11-28",
+      "X-RateLimit-Limit" : "5000",
+      "X-RateLimit-Remaining" : "4963",
+      "X-RateLimit-Reset" : "1694583289",
+      "X-RateLimit-Used" : "37",
+      "X-RateLimit-Resource" : "core",
+      "Access-Control-Expose-Headers" : "ETag, Link, Location, Retry-After, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Used, X-RateLimit-Resource, X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval, X-GitHub-Media-Type, X-GitHub-SSO, X-GitHub-Request-Id, Deprecation, Sunset",
+      "Access-Control-Allow-Origin" : "*",
+      "Strict-Transport-Security" : "max-age=31536000; includeSubdomains; preload",
+      "X-Frame-Options" : "deny",
+      "X-Content-Type-Options" : "nosniff",
+      "X-XSS-Protection" : "0",
+      "Referrer-Policy" : "origin-when-cross-origin, strict-origin-when-cross-origin",
+      "Content-Security-Policy" : "default-src 'none'",
+      "X-GitHub-Request-Id" : "C813:45EB:2CB88C7:2DF30E2:650143C3"
+    }
+  },
+  "uuid" : "94e8ab9f-d98d-30c0-bc1e-c49b78f991f6"
+}
