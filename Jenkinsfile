@@ -101,6 +101,7 @@ node {
                         stage('E2E Test') {
                             try {
                                 withEnv([
+                                    'E2E_WIREMOCK_HOST=host.docker.internal',
                                     'E2E_GITHUB_ORG=aboe026',
                                     'E2E_GITHUB_PAT=dummy' // this is not actually used because running through WireMock
                                 ]) {
