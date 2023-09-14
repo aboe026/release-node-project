@@ -26,7 +26,7 @@ describe('Index', () => {
     await jest.isolateModules(async () => {
       await import('../../src/index')
     })
-    await new Promise((resolve) => setTimeout(resolve, 0)) // need explicit sleep here because isolateModules does not await thrown error :/
+    await new Promise((resolve) => setTimeout(resolve, 10)) // need explicit sleep here because isolateModules does not await thrown error :/
     expect(consoleErrorSpy.mock.calls).toEqual([[error]])
     expect(exitSpy.mock.calls).toEqual([[1]])
   })

@@ -2,9 +2,9 @@ import crypto from 'crypto'
 import fs from 'fs-extra'
 import path from 'path'
 
-import env from './e2e-env'
+import env, { WiremockMode } from './e2e-env'
 import { E2eTests, getTestName } from './e2e-test-info'
-import Wiremock, { Mode as WiremockMode } from './wiremock'
+import Wiremock from './wiremock'
 
 /**
  * Scoped to test files (suites)
