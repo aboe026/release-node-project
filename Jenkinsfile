@@ -14,6 +14,7 @@ node {
     def packageJsonFile = 'package.json'
     def exceptionThrown = false
     def packageJson
+    def groovyLintCommand
 
     try {
         timeout(time: 20, unit: 'MINUTES') {
@@ -32,6 +33,7 @@ node {
                             pretty: 2
                         )
                         groovyLintImage += ":${packageJson.devDependencies['npm-groovy-lint']}"
+                        groovyLintCommand = packageJson.scripts['lint-groovy']
                         currentBuild.displayName = packageJson.version
                     }
                     stage('Pull Images') {
@@ -41,7 +43,7 @@ node {
 
                     stage('Lint Groovy') {
                         docker.image(groovyLintImage).inside('--entrypoint=""') {
-                            sh 'npm-groovy-lint --ignorepattern "**/node_modules/**" --failon info'
+                            sh "${groovyLintCommand}"
                         }
                     }
 
