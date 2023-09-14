@@ -2,7 +2,11 @@ import 'dotenv/config'
 import { cleanEnv, num, str } from 'envalid'
 import path from 'path'
 
-import { Mode as WiremockMode } from './wiremock'
+export enum WiremockMode {
+  Record = 'record',
+  Playback = 'playback',
+  None = 'none',
+}
 
 export default cleanEnv(process.env, {
   E2E_GITHUB_ORG: str({
@@ -22,6 +26,11 @@ export default cleanEnv(process.env, {
   E2E_TEMP_WORK_DIR: str({
     desc: 'The directory that E2E tests should create temporary projects for tests',
     default: path.join(__dirname, '../.temp-work-dir'),
+  }),
+  E2E_WIREMOCK_HOST: str({
+    desc: 'The hostname to reach out to for WireMock requests',
+    default: '127.0.0.1',
+    example: 'host.docker.internal',
   }),
   E2E_WIREMOCK_MODE: str({
     desc: 'In what capacity Wiremock should be used when running the E2E tests',

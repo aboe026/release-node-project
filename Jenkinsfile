@@ -41,22 +41,30 @@ node {
                         sh "docker pull ${groovyLintImage}"
                     }
 
-                    stage('Lint Groovy') {
-                        docker.image(groovyLintImage).inside('--entrypoint=""') {
-                            sh "${groovyLintCommand}"
+                    docker.image(nodeImage).inside('-v /var/run/docker.sock:/var/run/docker.sock') {
+                        stage('Docker CLI') {
+                            sh 'apt-get update'
+                            sh 'apt-get install -y docker.io'
                         }
-                    }
 
-                    docker.image(nodeImage).inside {
                         stage('Install') {
                             sh 'node --version'
                             sh 'yarn --version'
                             sh 'yarn install --immutable'
                         }
 
-                        stage('Lint Node') {
-                            sh 'yarn lint-node'
-                            sh 'yarn lint-release-notes'
+                        stage('Lint') {
+                            parallel(
+                                'node': {
+                                    sh 'yarn lint-node'
+                                    sh 'yarn lint-release-notes'
+                                },
+                                'groovy': {
+                                    docker.image(groovyLintImage).inside('--entrypoint=""') {
+                                        sh "${groovyLintCommand}"
+                                    }
+                                }
+                            )
                         }
 
                         stage('Build') {

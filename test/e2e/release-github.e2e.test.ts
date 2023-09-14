@@ -7,9 +7,9 @@ import { promisify } from 'util'
 
 import { E2eTests, getTestName } from './util/e2e-test-info'
 import E2eUtil, { ReleaseAsset } from './util/e2e-util'
-import env from './util/e2e-env'
+import env, { WiremockMode } from './util/e2e-env'
 import ReleaseNote from '../../src/release-note'
-import Wiremock, { Mode as WiremockMode } from './util/wiremock'
+import Wiremock from './util/wiremock'
 
 const execa = promisify(exec)
 const octoTemp = new Octokit().rest

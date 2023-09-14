@@ -2,6 +2,8 @@ import { exec } from 'child_process'
 import path from 'path'
 import { promisify } from 'util'
 
+import env from './e2e-env'
+
 const execa = promisify(exec)
 
 export default class Wiremock {
@@ -55,7 +57,7 @@ export default class Wiremock {
     if (!this.started) {
       return this.proxyTo
     }
-    return `https://127.0.0.1:${this.port}` // "localhost" does not work as Node 18+ uses ipv6
+    return `https://${env.E2E_WIREMOCK_HOST}:${this.port}` // "localhost" does not work as Node 18+ uses ipv6
   }
 
   private async getPort() {
@@ -87,10 +89,4 @@ export default class Wiremock {
       throw error
     }
   }
-}
-
-export enum Mode {
-  Record = 'record',
-  Playback = 'playback',
-  None = 'none',
 }
