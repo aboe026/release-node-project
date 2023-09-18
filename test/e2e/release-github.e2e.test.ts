@@ -26,24 +26,22 @@ const uploadWiremock = new Wiremock({
   record: env.E2E_WIREMOCK_MODE === WiremockMode.Record,
 })
 
-beforeAll(async () => {
-  if (env.E2E_WIREMOCK_MODE !== WiremockMode.None) {
-    await Promise.all([apiWiremock.start(), uploadWiremock.start()])
-  }
-  github = new Octokit({
-    auth: env.E2E_GITHUB_PAT,
-    userAgent: env.E2E_GITHUB_REPO_PREFIX,
-    baseUrl: apiWiremock.getUrl(),
-  }).rest
-})
-
-afterAll(async () => {
-  if (env.E2E_WIREMOCK_MODE !== WiremockMode.None) {
-    await Promise.all([apiWiremock.stop(), uploadWiremock.stop()])
-  }
-})
-
 describe('Release GitHub', () => {
+  beforeAll(async () => {
+    if (env.E2E_WIREMOCK_MODE !== WiremockMode.None) {
+      await Promise.all([apiWiremock.start(), uploadWiremock.start()])
+    }
+    github = new Octokit({
+      auth: env.E2E_GITHUB_PAT,
+      userAgent: env.E2E_GITHUB_REPO_PREFIX,
+      baseUrl: apiWiremock.getUrl(),
+    }).rest
+  })
+  afterAll(async () => {
+    if (env.E2E_WIREMOCK_MODE !== WiremockMode.None) {
+      await Promise.all([apiWiremock.stop(), uploadWiremock.stop()])
+    }
+  })
   beforeEach(async () => {
     await github.repos.createForAuthenticatedUser({
       name: getGitHubRepo(),
@@ -292,7 +290,12 @@ describe('Release GitHub', () => {
         version,
       })
       await testRelease({
-        options: [`--org=${org}`, `--repo=${repo}-non-existent`, `--version=${version}`].join(' '),
+        options: [
+          `--api=${apiWiremock.getUrl()}`,
+          `--org=${org}`,
+          `--repo=${repo}-non-existent`,
+          `--version=${version}`,
+        ].join(' '),
         error: `RequestError \\[HttpError\\]: Not Found`,
       })
     })
@@ -316,13 +319,7 @@ describe('Release GitHub', () => {
         version,
       })
       await testRelease({
-        options: [
-          `--api=${apiWiremock.getUrl()}`,
-          `--org=${org}`,
-          `--repo=${repo}`,
-          `--upload=${uploadWiremock.getUrl()}`,
-          `--version=${version}`,
-        ].join(' '),
+        options: [`--api=${apiWiremock.getUrl()}`, `--org=${org}`, `--repo=${repo}`, `--version=${version}`].join(' '),
         body: 'Initial Release Required\n\n---\n\n**New Features**\n* Required Test\n\n',
         org: env.E2E_GITHUB_ORG,
         repo: getGitHubRepo(),
@@ -388,6 +385,7 @@ describe('Release GitHub', () => {
         target: target,
         version,
       })
+      await apiWiremock.resolveRedirects(new RegExp(`.*${repo}-releases-assets-.*`))
     })
     it('creates second release with multiple assets', async () => {
       const org = env.E2E_GITHUB_ORG
@@ -451,6 +449,7 @@ describe('Release GitHub', () => {
         version,
         expectedReleases: 2,
       })
+      await apiWiremock.resolveRedirects(new RegExp(`.*${repo}-releases-assets-.*`))
     })
   })
 })
@@ -572,7 +571,7 @@ async function testRelease({
         await E2eUtil.downloadFile(downloadUrl, assetDownloadFileName, {
           Accept: 'application/octet-stream',
           Authorization: `token ${env.E2E_GITHUB_PAT}`,
-          'User-Agent': '',
+          'User-Agent': env.E2E_GITHUB_REPO_PREFIX,
         })
         const assetDownloadContents = await fs.readFile(assetDownloadFileName, {
           encoding: 'utf-8',

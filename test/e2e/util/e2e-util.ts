@@ -35,9 +35,7 @@ export default class E2eUtil {
     const response = await fetch(url, {
       headers: requestHeaders,
     })
-    const fileStream = fs.createWriteStream(file, {
-      flags: 'wx',
-    })
+    const fileStream = fs.createWriteStream(file)
     await finished(Readable.fromWeb(response.body as any).pipe(fileStream)) // eslint-disable-line @typescript-eslint/no-explicit-any
   }
 

@@ -1,8 +1,10 @@
 import { exec } from 'child_process'
+import fs from 'fs-extra'
 import path from 'path'
 import { promisify } from 'util'
 
 import env from './e2e-env'
+import E2eUtil from './e2e-util'
 
 const execa = promisify(exec)
 
@@ -15,11 +17,13 @@ export default class Wiremock {
   private proxyTo: string
   private record: boolean
   private port: number | undefined
+  private directory: string
 
   constructor({ containerName, proxyTo, record }: { containerName: string; proxyTo: string; record: boolean }) {
     this.containerName = containerName
     this.proxyTo = proxyTo
     this.record = record
+    this.directory = path.join(Wiremock.baseDir, this.containerName)
   }
 
   async start() {
@@ -30,7 +34,7 @@ export default class Wiremock {
       '-d',
       `--name=${this.containerName}`,
       `-p=8443`,
-      `-v=${path.join(Wiremock.baseDir, this.containerName)}:/home/wiremock`,
+      `-v=${this.directory}:/home/wiremock`,
       'wiremock/wiremock:3.0.1-1',
       `--https-port=${Wiremock.internalContainerPort}`,
       `--proxy-all="${this.proxyTo}"`,
@@ -47,6 +51,43 @@ export default class Wiremock {
 
   async stop() {
     await execa(`docker stop ${this.containerName}`)
+  }
+
+  // Apparently WireMock does not resolve redirects. This is a problem because those redirects might still be
+  // making requests to resources we don't want to interact with (which is why we're using WireMock in the first place).
+  // An example of this is the GitHub download URL for release assets get redirected to "https://objects.githubusercontent.com"
+  // To keep "isolated" (and break reliance on external sites, even for redirects)
+  // use this method to find the mapping files which contains the 302/redirect
+  // to get the response status changed to 200, and have its corresponding
+  // __files body changed to the contents found at the redirected URL (based off the "Location" header of the initial response)
+  // In playback, calls to the original endpoint will no longer get redirected, but return the response that the redirect would have
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  async resolveRedirects(fileNameFilter?: RegExp) {
+    if (this.record) {
+      const mappingsDir = path.join(this.directory, 'mappings')
+      let mappingFiles = await fs.readdir(mappingsDir)
+      if (fileNameFilter) {
+        mappingFiles = mappingFiles.filter((mappingFile) => fileNameFilter.test(mappingFile))
+      }
+      if (mappingFiles.length === 0) {
+        throw Error(`No mapping files matched RegExp of "${fileNameFilter}"`)
+      }
+      for (const mappingFile of mappingFiles) {
+        const mappingFileName = path.join(mappingsDir, mappingFile)
+        const mappingContents = await fs.readFile(mappingFileName, {
+          encoding: 'utf-8',
+        })
+        const mappingJson = JSON.parse(mappingContents)
+        if (mappingJson.response.status === 302) {
+          mappingJson.response.status = 200
+          await E2eUtil.downloadFile(
+            mappingJson.response.headers.Location,
+            path.join(this.directory, '__files', mappingJson.response.bodyFileName)
+          )
+          await fs.writeFile(mappingFileName, JSON.stringify(mappingJson, null, 2))
+        }
+      }
+    }
   }
 
   getProxyTo() {
