@@ -19,6 +19,10 @@ export default cleanEnv(process.env, {
     desc: 'The repository name in GitHub to test against',
     default: 'release-node-project-e2e-testing',
   }),
+  E2E_MOUNT_DIR: str({
+    desc: 'The path used when creating shared volumes with docker containers.',
+    default: '',
+  }),
   E2E_NPM_REGISTRY_PORT: num({
     desc: 'The port to run the NPM registry used by E2E tests',
     default: 4873,

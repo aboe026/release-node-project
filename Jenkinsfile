@@ -12,9 +12,11 @@ node {
     def isLatest = env.BRANCH_NAME == 'main'
     def upload = isLatest || env.BRANCH_NAME ==~ releaseBranchRegex
     def packageJsonFile = 'package.json'
+    def containerRootPath = '/var/jenkins_home'
     def exceptionThrown = false
     def packageJson
     def groovyLintCommand
+    def workDirHostPath
 
     try {
         timeout(time: 20, unit: 'MINUTES') {
@@ -32,9 +34,23 @@ node {
                             json: packageJson,
                             pretty: 2
                         )
+                        currentBuild.displayName = packageJson.version
+
                         groovyLintImage += ":${packageJson.devDependencies['npm-groovy-lint']}"
                         groovyLintCommand = packageJson.scripts['lint-groovy']
-                        currentBuild.displayName = packageJson.version
+
+                        def containerInfo = sh(
+                            script: 'docker inspect cicd-jenkins-1',
+                            returnStdout: true
+                        )
+                        def containerJson = readJSON text: containerInfo
+                        def hostMountPath
+                        containerJson[0].Mounts.each { mount ->
+                            if (mount.Destination == containerRootPath) {
+                                hostMountPath = mount.Source
+                            }
+                        }
+                        workDirHostPath = "${workDir.replace(containerRootPath, hostMountPath)}"
                     }
                     stage('Pull Images') {
                         sh "docker pull ${nodeImage}"
@@ -110,9 +126,10 @@ node {
                         stage('E2E Test') {
                             try {
                                 withEnv([
-                                    'E2E_WIREMOCK_HOST=host.docker.internal',
                                     'E2E_GITHUB_ORG=aboe026',
-                                    'E2E_GITHUB_PAT=dummy' // this is not actually used because running through WireMock
+                                    'E2E_GITHUB_PAT=dummy', // this is not actually used because running through WireMock
+                                    "E2E_MOUNT_DIR=${workDirHostPath}",
+                                    'E2E_WIREMOCK_HOST=host.docker.internal'
                                 ]) {
                                     sh 'yarn test-e2e-ci'
                                 }
