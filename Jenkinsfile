@@ -41,62 +41,71 @@ node {
                         sh "docker pull ${groovyLintImage}"
                     }
 
-                    docker.image(nodeImage).inside('-v /var/run/docker.sock:/var/run/docker.sock') {
-                        stage('Docker CLI') {
-                            sh 'apt-get update'
-                            sh 'apt-get install -y docker.io'
-                        }
+                    parallel(
+                        'groovy': {
+                            stage('Lint Groovy') {
+                                docker.image(groovyLintImage).inside('--entrypoint=""') {
+                                    sh "${groovyLintCommand}"
+                                }
+                            }
+                        },
+                        'node': {
+                            docker.image(nodeImage).inside {
+                                stage('Install') {
+                                    sh 'node --version'
+                                    sh 'yarn --version'
+                                    sh 'yarn install --immutable'
+                                }
 
-                        stage('Install') {
-                            sh 'node --version'
-                            sh 'yarn --version'
-                            sh 'yarn install --immutable'
-                        }
-
-                        stage('Lint') {
-                            parallel(
-                                'node': {
+                                stage('Lint Node') {
                                     sh 'yarn lint-node'
                                     sh 'yarn lint-release-notes'
-                                },
-                                'groovy': {
-                                    docker.image(groovyLintImage).inside('--entrypoint=""') {
-                                        sh "${groovyLintCommand}"
-                                    }
                                 }
-                            )
-                        }
 
-                        stage('Build') {
-                            sh 'yarn build'
-                        }
-
-                        stage('Unit Test') {
-                            try {
-                                sh 'yarn test-unit-ci'
-                            } catch (err) {
-                                exceptionThrown = true
-                                println 'Exception was caught in try block of "Unit Test" stage:'
-                                println err
-                            } finally {
-                                junit testResults: 'test-results/unit.xml', allowEmptyResults: true
-                                recordCoverage(
-                                    skipPublishingChecks: true,
-                                    sourceCodeRetention: 'EVERY_BUILD',
-                                    tools: [
-                                        [
-                                            parser: 'COBERTURA',
-                                            pattern: 'coverage/cobertura-coverage.xml'
-                                        ]
-                                    ]
-                                )
-                                if (upload) {
-                                    badges.uploadCoverageResult(
-                                        branch: env.BRANCH_NAME
-                                    )
+                                stage('Build') {
+                                    sh 'yarn build'
                                 }
                             }
                         }
+                    )
+
+                    docker.image(nodeImage).inside('-v /var/run/docker.sock:/var/run/docker.sock') {
+                        parallel(
+                            'unit-tests': {
+                                stage('Unit Test') {
+                                    try {
+                                        sh 'yarn test-unit-ci'
+                                    } catch (err) {
+                                        exceptionThrown = true
+                                        println 'Exception was caught in try block of "Unit Test" stage:'
+                                        println err
+                                    } finally {
+                                        junit testResults: 'test-results/unit.xml', allowEmptyResults: true
+                                        recordCoverage(
+                                            skipPublishingChecks: true,
+                                            sourceCodeRetention: 'EVERY_BUILD',
+                                            tools: [
+                                                [
+                                                    parser: 'COBERTURA',
+                                                    pattern: 'coverage/cobertura-coverage.xml'
+                                                ]
+                                            ]
+                                        )
+                                        if (upload) {
+                                            badges.uploadCoverageResult(
+                                                branch: env.BRANCH_NAME
+                                            )
+                                        }
+                                    }
+                                }
+                            },
+                            'docker-cli': {
+                                stage('Docker CLI') {
+                                    sh 'apt-get update'
+                                    sh 'apt-get install -y docker.io'
+                                }
+                            }
+                        )
 
                         stage('E2E Test') {
                             try {
