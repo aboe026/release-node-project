@@ -43,7 +43,9 @@ export default class Wiremock {
     if (this.record) {
       command.push('--record-mappings')
     }
-    await execa(command.join(' '))
+    console.log(`TEST command: '${command.join(' ')}'`) // eslint-disable-line no-console
+    const response = await execa(command.join(' '))
+    console.log(`TEST response: '${JSON.stringify(response, null, 2)}'`) // eslint-disable-line no-console
     this.port = await this.getPort()
     this.started = true
     await this.waitToBeUp()
