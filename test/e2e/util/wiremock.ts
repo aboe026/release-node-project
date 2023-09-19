@@ -27,6 +27,7 @@ export default class Wiremock {
   }
 
   async start() {
+    await fs.ensureDir(this.directory)
     const volumeMountDir = env.E2E_MOUNT_DIR
       ? path.join(env.E2E_MOUNT_DIR, 'test', 'e2e', 'wiremock-recordings', this.containerName)
       : this.directory
@@ -37,7 +38,7 @@ export default class Wiremock {
       '-d',
       `--name=${this.containerName}`,
       `-p=8443`,
-      `-v=${volumeMountDir}:/home/wiremock`,
+      `-v="${volumeMountDir}:/home/wiremock"`,
       'wiremock/wiremock:3.0.1-1',
       `--https-port=${Wiremock.internalContainerPort}`,
       `--proxy-all="${this.proxyTo}"`,
