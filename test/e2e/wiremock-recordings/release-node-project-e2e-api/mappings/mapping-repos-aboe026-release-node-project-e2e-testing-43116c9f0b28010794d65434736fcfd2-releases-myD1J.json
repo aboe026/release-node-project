@@ -1,0 +1,44 @@
+{
+  "id" : "62de7ce7-5be9-300d-929e-9f7e47a5c59d",
+  "request" : {
+    "url" : "/repos/aboe026/release-node-project-e2e-testing-43116c9f0b28010794d65434736fcfd2/releases",
+    "method" : "POST",
+    "bodyPatterns" : [ {
+      "equalToJson" : "{\"tag_name\":\"v1.0.0\",\"target_commitish\":\"1.0\",\"make_latest\":\"false\",\"draft\":true,\"name\":\"1.0.0\",\"body\":\"Initial Release Optional\\n\\n---\\n\\n**Bug Fixes**\\n* Optional Test\\n\\n---\\n\\nAdditional Information\\n* Build Branch: 1.0\\n* Build Number: 1\"}",
+      "ignoreArrayOrder" : true,
+      "ignoreExtraElements" : true
+    } ]
+  },
+  "response" : {
+    "status" : 201,
+    "bodyFileName" : "body-repos-aboe026-release-node-project-e2e-testing-43116c9f0b28010794d65434736fcfd2-releases-myD1J.json",
+    "headers" : {
+      "Server" : "GitHub.com",
+      "Date" : "Mon, 25 Sep 2023 23:08:46 GMT",
+      "Content-Type" : "application/json; charset=utf-8",
+      "Cache-Control" : "private, max-age=60, s-maxage=60",
+      "Vary" : [ "Accept, Authorization, Cookie, X-GitHub-OTP", "Accept-Encoding, Accept, X-Requested-With" ],
+      "ETag" : "\"4e35c184420ccd4883db2dd5c553ab2c03edad89b0eb445fa027bb25b04be744\"",
+      "X-OAuth-Scopes" : "delete_repo, repo",
+      "X-Accepted-OAuth-Scopes" : "repo",
+      "Location" : "https://api.github.com/repos/aboe026/release-node-project-e2e-testing-43116c9f0b28010794d65434736fcfd2/releases/122526538",
+      "X-GitHub-Media-Type" : "github.v3; format=json",
+      "x-github-api-version-selected" : "2022-11-28",
+      "X-RateLimit-Limit" : "5000",
+      "X-RateLimit-Remaining" : "4942",
+      "X-RateLimit-Reset" : "1695686769",
+      "X-RateLimit-Used" : "58",
+      "X-RateLimit-Resource" : "core",
+      "Access-Control-Expose-Headers" : "ETag, Link, Location, Retry-After, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Used, X-RateLimit-Resource, X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval, X-GitHub-Media-Type, X-GitHub-SSO, X-GitHub-Request-Id, Deprecation, Sunset",
+      "Access-Control-Allow-Origin" : "*",
+      "Strict-Transport-Security" : "max-age=31536000; includeSubdomains; preload",
+      "X-Frame-Options" : "deny",
+      "X-Content-Type-Options" : "nosniff",
+      "X-XSS-Protection" : "0",
+      "Referrer-Policy" : "origin-when-cross-origin, strict-origin-when-cross-origin",
+      "Content-Security-Policy" : "default-src 'none'",
+      "X-GitHub-Request-Id" : "D362:3488:EA41D1:EF2A48:651212FE"
+    }
+  },
+  "uuid" : "62de7ce7-5be9-300d-929e-9f7e47a5c59d"
+}

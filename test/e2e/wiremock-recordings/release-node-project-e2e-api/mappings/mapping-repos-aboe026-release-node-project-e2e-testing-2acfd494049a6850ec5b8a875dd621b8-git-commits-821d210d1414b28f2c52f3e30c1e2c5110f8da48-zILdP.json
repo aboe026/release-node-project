@@ -1,0 +1,39 @@
+{
+  "id" : "b9b36821-01b5-3176-b30d-30fa5ccb884f",
+  "request" : {
+    "url" : "/repos/aboe026/release-node-project-e2e-testing-2acfd494049a6850ec5b8a875dd621b8/git/commits/821d210d1414b28f2c52f3e30c1e2c5110f8da48",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-repos-aboe026-release-node-project-e2e-testing-2acfd494049a6850ec5b8a875dd621b8-git-commits-821d210d1414b28f2c52f3e30c1e2c5110f8da48-zILdP.json",
+    "headers" : {
+      "Server" : "GitHub.com",
+      "Date" : "Mon, 25 Sep 2023 23:08:52 GMT",
+      "Content-Type" : "application/json; charset=utf-8",
+      "Cache-Control" : "private, max-age=60, s-maxage=60",
+      "Vary" : [ "Accept, Authorization, Cookie, X-GitHub-OTP", "Accept-Encoding, Accept, X-Requested-With" ],
+      "ETag" : "W/\"a5908aee4dc580b55e44f04bf0214239f861ac4ce501cb54ec19e1f40e53ba14\"",
+      "Last-Modified" : "Mon, 25 Sep 2023 23:08:50 GMT",
+      "X-OAuth-Scopes" : "delete_repo, repo",
+      "X-Accepted-OAuth-Scopes" : "",
+      "X-GitHub-Media-Type" : "github.v3; format=json",
+      "x-github-api-version-selected" : "2022-11-28",
+      "X-RateLimit-Limit" : "5000",
+      "X-RateLimit-Remaining" : "4932",
+      "X-RateLimit-Reset" : "1695686769",
+      "X-RateLimit-Used" : "68",
+      "X-RateLimit-Resource" : "core",
+      "Access-Control-Expose-Headers" : "ETag, Link, Location, Retry-After, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Used, X-RateLimit-Resource, X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval, X-GitHub-Media-Type, X-GitHub-SSO, X-GitHub-Request-Id, Deprecation, Sunset",
+      "Access-Control-Allow-Origin" : "*",
+      "Strict-Transport-Security" : "max-age=31536000; includeSubdomains; preload",
+      "X-Frame-Options" : "deny",
+      "X-Content-Type-Options" : "nosniff",
+      "X-XSS-Protection" : "0",
+      "Referrer-Policy" : "origin-when-cross-origin, strict-origin-when-cross-origin",
+      "Content-Security-Policy" : "default-src 'none'",
+      "X-GitHub-Request-Id" : "D37D:2941:D4AECF:D9974B:65121304"
+    }
+  },
+  "uuid" : "b9b36821-01b5-3176-b30d-30fa5ccb884f"
+}

@@ -1,0 +1,44 @@
+{
+  "id" : "6fe4c3ce-f60a-3a7b-8d12-5262f0f1c87b",
+  "request" : {
+    "url" : "/repos/aboe026/release-node-project-e2e-testing-2acfd494049a6850ec5b8a875dd621b8/git/trees",
+    "method" : "POST",
+    "bodyPatterns" : [ {
+      "equalToJson" : "{\"tree\":[{\"path\":\"commit-files/newReleaseFile.txt\",\"mode\":\"100644\",\"type\":\"blob\",\"sha\":\"8c81824d1e15d9a125f6ed30009684b3e0c59307\"}],\"base_tree\":\"d6f5d506066eea7c89dcb038b6a09fae65fd23f5\"}",
+      "ignoreArrayOrder" : true,
+      "ignoreExtraElements" : true
+    } ]
+  },
+  "response" : {
+    "status" : 201,
+    "bodyFileName" : "body-repos-aboe026-release-node-project-e2e-testing-2acfd494049a6850ec5b8a875dd621b8-git-trees-8sUmq.json",
+    "headers" : {
+      "Server" : "GitHub.com",
+      "Date" : "Mon, 25 Sep 2023 23:08:52 GMT",
+      "Content-Type" : "application/json; charset=utf-8",
+      "Cache-Control" : "private, max-age=60, s-maxage=60",
+      "Vary" : [ "Accept, Authorization, Cookie, X-GitHub-OTP", "Accept-Encoding, Accept, X-Requested-With" ],
+      "ETag" : "\"f1bb9faa1adb94ed16e3e0d208ac09f648a924fc9710df47851ade139aa2c9f0\"",
+      "X-OAuth-Scopes" : "delete_repo, repo",
+      "X-Accepted-OAuth-Scopes" : "",
+      "Location" : "https://api.github.com/repos/aboe026/release-node-project-e2e-testing-2acfd494049a6850ec5b8a875dd621b8/git/trees/7172ea6e735398145b4bc138f63304432c003ff8",
+      "X-GitHub-Media-Type" : "github.v3; format=json",
+      "x-github-api-version-selected" : "2022-11-28",
+      "X-RateLimit-Limit" : "5000",
+      "X-RateLimit-Remaining" : "4930",
+      "X-RateLimit-Reset" : "1695686769",
+      "X-RateLimit-Used" : "70",
+      "X-RateLimit-Resource" : "core",
+      "Access-Control-Expose-Headers" : "ETag, Link, Location, Retry-After, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Used, X-RateLimit-Resource, X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval, X-GitHub-Media-Type, X-GitHub-SSO, X-GitHub-Request-Id, Deprecation, Sunset",
+      "Access-Control-Allow-Origin" : "*",
+      "Strict-Transport-Security" : "max-age=31536000; includeSubdomains; preload",
+      "X-Frame-Options" : "deny",
+      "X-Content-Type-Options" : "nosniff",
+      "X-XSS-Protection" : "0",
+      "Referrer-Policy" : "origin-when-cross-origin, strict-origin-when-cross-origin",
+      "Content-Security-Policy" : "default-src 'none'",
+      "X-GitHub-Request-Id" : "D380:4D60:E9AE87:EE9742:65121304"
+    }
+  },
+  "uuid" : "6fe4c3ce-f60a-3a7b-8d12-5262f0f1c87b"
+}

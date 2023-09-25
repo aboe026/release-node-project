@@ -1,0 +1,39 @@
+{
+  "id" : "2467546a-56bb-3f56-9e56-30d0a5ed7f5f",
+  "request" : {
+    "url" : "/repos/aboe026/release-node-project-e2e-testing-f1e086660d47777fede23b1bc6e0d7aa/releases/latest",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-repos-aboe026-release-node-project-e2e-testing-f1e086660d47777fede23b1bc6e0d7aa-releases-latest-vt4F1.json",
+    "headers" : {
+      "Server" : "GitHub.com",
+      "Date" : "Mon, 25 Sep 2023 23:08:40 GMT",
+      "Content-Type" : "application/json; charset=utf-8",
+      "Cache-Control" : "private, max-age=60, s-maxage=60",
+      "Vary" : [ "Accept, Authorization, Cookie, X-GitHub-OTP", "Accept-Encoding, Accept, X-Requested-With" ],
+      "ETag" : "W/\"520b7f1f80e92afe6fda21f530a7ebafec2f59da5e6e6c00eca76b889076add8\"",
+      "Last-Modified" : "Mon, 25 Sep 2023 23:08:37 GMT",
+      "X-OAuth-Scopes" : "delete_repo, repo",
+      "X-Accepted-OAuth-Scopes" : "repo",
+      "X-GitHub-Media-Type" : "github.v3; format=json",
+      "x-github-api-version-selected" : "2022-11-28",
+      "X-RateLimit-Limit" : "5000",
+      "X-RateLimit-Remaining" : "4947",
+      "X-RateLimit-Reset" : "1695686769",
+      "X-RateLimit-Used" : "53",
+      "X-RateLimit-Resource" : "core",
+      "Access-Control-Expose-Headers" : "ETag, Link, Location, Retry-After, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Used, X-RateLimit-Resource, X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval, X-GitHub-Media-Type, X-GitHub-SSO, X-GitHub-Request-Id, Deprecation, Sunset",
+      "Access-Control-Allow-Origin" : "*",
+      "Strict-Transport-Security" : "max-age=31536000; includeSubdomains; preload",
+      "X-Frame-Options" : "deny",
+      "X-Content-Type-Options" : "nosniff",
+      "X-XSS-Protection" : "0",
+      "Referrer-Policy" : "origin-when-cross-origin, strict-origin-when-cross-origin",
+      "Content-Security-Policy" : "default-src 'none'",
+      "X-GitHub-Request-Id" : "D333:2E94:C8F5E2:CDDE1B:651212F8"
+    }
+  },
+  "uuid" : "2467546a-56bb-3f56-9e56-30d0a5ed7f5f"
+}

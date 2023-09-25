@@ -639,7 +639,13 @@ async function uploadFileAsNewCommit({
   const filePath = path.join(subdir, fileName)
   await fs.writeFileSync(filePath, commitMessage)
   const blob = await createBlobForFile(org, repo, filePath)
-  const newTree = await createNewTree(org, repo, [blob], [path.relative(directory, filePath)], currentCommit.treeSha)
+  const newTree = await createNewTree(
+    org,
+    repo,
+    [blob],
+    [path.relative(directory, filePath).replace(/\\/g, '/')], // ensure WireMock mappings are same for both Windows and Unix
+    currentCommit.treeSha
+  )
   const { data: newCommit } = await github.git.createCommit({
     owner: org,
     repo,

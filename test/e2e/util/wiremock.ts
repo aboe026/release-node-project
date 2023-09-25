@@ -42,7 +42,8 @@ export default class Wiremock {
       'wiremock/wiremock:3.0.1-1',
       `--https-port=${Wiremock.internalContainerPort}`,
       `--proxy-all="${this.proxyTo}"`,
-      // '--print-all-network-traffic', // to debug requests
+      // '--print-all-network-traffic', // un-comment to debug requests
+      // '--verbose', // un-comment to debug requests
     ]
     if (this.record) {
       command.push('--record-mappings')
