@@ -43,11 +43,13 @@ describe('Release GitHub', () => {
     }
   })
   beforeEach(async () => {
+    console.log('TEST beforeEach 0')
     await github.repos.createForAuthenticatedUser({
       name: getGitHubRepo(),
       auto_init: true,
       private: true,
     })
+    console.log('TEST beforeEach 1')
   })
   afterEach(async () => {
     try {
@@ -491,7 +493,10 @@ async function testRelease({
   expectedReleases?: number
 }) {
   const directory = E2eTests[getTestName()].directory
-  const promise = execa(`npm run github${options ? ` -- ${options}` : ''}`, {
+  const command = `npm run github${options ? ` -- ${options}` : ''}`
+  console.log(`TEST directory: '${directory}'`)
+  console.log(`TEST envVars: '${JSON.stringify(envVars)}'`)
+  const promise = execa(command, {
     cwd: directory,
     env: envVars,
   })
