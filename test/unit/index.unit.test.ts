@@ -21,7 +21,6 @@ jest.mock('yargs', () => ({
 
 describe('Index', () => {
   it('prints error and exits with unsuccessful code', async () => {
-    jest.setTimeout(10000)
     const consoleErrorSpy = jest.spyOn(console, 'error').mockImplementation()
     const exitSpy = jest.spyOn(process, 'exit').mockImplementation()
     await jest.isolateModules(async () => {
