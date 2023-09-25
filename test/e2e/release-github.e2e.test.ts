@@ -493,12 +493,12 @@ async function testRelease({
   expectedReleases?: number
 }) {
   const directory = E2eTests[getTestName()].directory
-  const command = `npm run github${options ? ` -- ${options}` : ''}`
-  console.log(`TEST directory: '${directory}'`)
-  console.log(`TEST envVars: '${JSON.stringify(envVars)}'`)
-  const promise = execa(command, {
+  const promise = execa(`npm run github${options ? ` -- ${options}` : ''}`, {
     cwd: directory,
-    env: envVars,
+    env: {
+      ...process.env,
+      ...envVars,
+    },
   })
   if (error) {
     await expect(promise).rejects.toThrow(new RegExp(`.*${error}.*`))
