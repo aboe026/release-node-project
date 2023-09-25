@@ -43,13 +43,11 @@ describe('Release GitHub', () => {
     }
   })
   beforeEach(async () => {
-    console.log('TEST beforeEach 0')
     await github.repos.createForAuthenticatedUser({
       name: getGitHubRepo(),
       auto_init: true,
       private: true,
     })
-    console.log('TEST beforeEach 1')
   })
   afterEach(async () => {
     try {

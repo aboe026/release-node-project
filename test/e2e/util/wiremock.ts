@@ -34,7 +34,7 @@ export default class Wiremock {
     const command = [
       'docker',
       'run',
-      // '--rm', // TODO: try this for debugging
+      '--rm',
       '-d',
       `--name=${this.containerName}`,
       `-p=8443`,
@@ -42,14 +42,12 @@ export default class Wiremock {
       'wiremock/wiremock:3.0.1-1',
       `--https-port=${Wiremock.internalContainerPort}`,
       `--proxy-all="${this.proxyTo}"`,
-      '--print-all-network-traffic',
+      // '--print-all-network-traffic', // to debug requests
     ]
     if (this.record) {
       command.push('--record-mappings')
     }
-    console.log(`TEST command: '${command.join(' ')}'`) // eslint-disable-line no-console
-    const response = await execa(command.join(' '))
-    console.log(`TEST response: '${JSON.stringify(response, null, 2)}'`) // eslint-disable-line no-console
+    await execa(command.join(' '))
     this.port = await this.getPort()
     this.started = true
     await this.waitToBeUp()
