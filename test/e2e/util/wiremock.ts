@@ -34,7 +34,7 @@ export default class Wiremock {
     const command = [
       'docker',
       'run',
-      '--rm',
+      // '--rm', // TODO: try this for debugging
       '-d',
       `--name=${this.containerName}`,
       `-p=8443`,
