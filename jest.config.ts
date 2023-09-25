@@ -8,7 +8,6 @@ const config: Config = {
   resetMocks: true,
   restoreMocks: true,
   testEnvironment: 'node',
-  testTimeout: 10000,
 }
 
 const testSuiteName: string | undefined = process.env.TEST_RESULT_NAME

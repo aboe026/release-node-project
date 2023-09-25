@@ -29,5 +29,5 @@ describe('Index', () => {
     await new Promise((resolve) => setTimeout(resolve, 10)) // need explicit sleep here because isolateModules does not await thrown error :/
     expect(consoleErrorSpy.mock.calls).toEqual([[error]])
     expect(exitSpy.mock.calls).toEqual([[1]])
-  })
+  }, 10000) // for some reason this failed in CI with the default timeout
 })
