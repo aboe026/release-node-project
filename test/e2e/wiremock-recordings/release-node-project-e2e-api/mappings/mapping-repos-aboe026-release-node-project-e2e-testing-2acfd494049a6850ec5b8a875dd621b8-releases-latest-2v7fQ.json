@@ -1,0 +1,39 @@
+{
+  "id" : "a92dec92-cc7d-3a03-8912-4516cba42e88",
+  "request" : {
+    "url" : "/repos/aboe026/release-node-project-e2e-testing-2acfd494049a6850ec5b8a875dd621b8/releases/latest",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-repos-aboe026-release-node-project-e2e-testing-2acfd494049a6850ec5b8a875dd621b8-releases-latest-2v7fQ.json",
+    "headers" : {
+      "Server" : "GitHub.com",
+      "Date" : "Mon, 25 Sep 2023 23:09:01 GMT",
+      "Content-Type" : "application/json; charset=utf-8",
+      "Cache-Control" : "private, max-age=60, s-maxage=60",
+      "Vary" : [ "Accept, Authorization, Cookie, X-GitHub-OTP", "Accept-Encoding, Accept, X-Requested-With" ],
+      "ETag" : "W/\"31956235261a79925038a261f43c617962f2587d6619465d7e66751bed925eb2\"",
+      "Last-Modified" : "Mon, 25 Sep 2023 23:08:58 GMT",
+      "X-OAuth-Scopes" : "delete_repo, repo",
+      "X-Accepted-OAuth-Scopes" : "repo",
+      "X-GitHub-Media-Type" : "github.v3; format=json",
+      "x-github-api-version-selected" : "2022-11-28",
+      "X-RateLimit-Limit" : "5000",
+      "X-RateLimit-Remaining" : "4919",
+      "X-RateLimit-Reset" : "1695686769",
+      "X-RateLimit-Used" : "81",
+      "X-RateLimit-Resource" : "core",
+      "Access-Control-Expose-Headers" : "ETag, Link, Location, Retry-After, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Used, X-RateLimit-Resource, X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval, X-GitHub-Media-Type, X-GitHub-SSO, X-GitHub-Request-Id, Deprecation, Sunset",
+      "Access-Control-Allow-Origin" : "*",
+      "Strict-Transport-Security" : "max-age=31536000; includeSubdomains; preload",
+      "X-Frame-Options" : "deny",
+      "X-Content-Type-Options" : "nosniff",
+      "X-XSS-Protection" : "0",
+      "Referrer-Policy" : "origin-when-cross-origin, strict-origin-when-cross-origin",
+      "Content-Security-Policy" : "default-src 'none'",
+      "X-GitHub-Request-Id" : "D3BB:9386:D039F7:D522F3:6512130D"
+    }
+  },
+  "uuid" : "a92dec92-cc7d-3a03-8912-4516cba42e88"
+}

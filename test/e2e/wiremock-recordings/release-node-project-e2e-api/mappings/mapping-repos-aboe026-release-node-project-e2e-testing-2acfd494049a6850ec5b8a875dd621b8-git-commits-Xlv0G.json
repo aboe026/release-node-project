@@ -1,0 +1,44 @@
+{
+  "id" : "096842ef-560b-385e-b273-db28b491f863",
+  "request" : {
+    "url" : "/repos/aboe026/release-node-project-e2e-testing-2acfd494049a6850ec5b8a875dd621b8/git/commits",
+    "method" : "POST",
+    "bodyPatterns" : [ {
+      "equalToJson" : "{\"message\":\"Commit for new release\",\"tree\":\"7172ea6e735398145b4bc138f63304432c003ff8\",\"parents\":[\"821d210d1414b28f2c52f3e30c1e2c5110f8da48\"]}",
+      "ignoreArrayOrder" : true,
+      "ignoreExtraElements" : true
+    } ]
+  },
+  "response" : {
+    "status" : 201,
+    "bodyFileName" : "body-repos-aboe026-release-node-project-e2e-testing-2acfd494049a6850ec5b8a875dd621b8-git-commits-Xlv0G.json",
+    "headers" : {
+      "Server" : "GitHub.com",
+      "Date" : "Mon, 25 Sep 2023 23:08:52 GMT",
+      "Content-Type" : "application/json; charset=utf-8",
+      "Cache-Control" : "private, max-age=60, s-maxage=60",
+      "Vary" : [ "Accept, Authorization, Cookie, X-GitHub-OTP", "Accept-Encoding, Accept, X-Requested-With" ],
+      "ETag" : "\"34b736316e7a2adb793c9aee7c5ee9315e754c1ede915b272fc937bb03ecbe01\"",
+      "X-OAuth-Scopes" : "delete_repo, repo",
+      "X-Accepted-OAuth-Scopes" : "",
+      "Location" : "https://api.github.com/repos/aboe026/release-node-project-e2e-testing-2acfd494049a6850ec5b8a875dd621b8/git/commits/2a7be490ac54383ba426df4f9d955efac61da275",
+      "X-GitHub-Media-Type" : "github.v3; format=json",
+      "x-github-api-version-selected" : "2022-11-28",
+      "X-RateLimit-Limit" : "5000",
+      "X-RateLimit-Remaining" : "4929",
+      "X-RateLimit-Reset" : "1695686769",
+      "X-RateLimit-Used" : "71",
+      "X-RateLimit-Resource" : "core",
+      "Access-Control-Expose-Headers" : "ETag, Link, Location, Retry-After, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Used, X-RateLimit-Resource, X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval, X-GitHub-Media-Type, X-GitHub-SSO, X-GitHub-Request-Id, Deprecation, Sunset",
+      "Access-Control-Allow-Origin" : "*",
+      "Strict-Transport-Security" : "max-age=31536000; includeSubdomains; preload",
+      "X-Frame-Options" : "deny",
+      "X-Content-Type-Options" : "nosniff",
+      "X-XSS-Protection" : "0",
+      "Referrer-Policy" : "origin-when-cross-origin, strict-origin-when-cross-origin",
+      "Content-Security-Policy" : "default-src 'none'",
+      "X-GitHub-Request-Id" : "D381:3488:EA4B4A:EF33EF:65121304"
+    }
+  },
+  "uuid" : "096842ef-560b-385e-b273-db28b491f863"
+}

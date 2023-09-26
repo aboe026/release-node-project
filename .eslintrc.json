@@ -1,0 +1,25 @@
+{
+  "extends": ["plugin:@typescript-eslint/recommended", "plugin:prettier/recommended"],
+  "ignorePatterns": [
+    ".env",
+    ".pnp.*",
+    ".vscode",
+    ".yarn",
+    "build",
+    "coverage",
+    "node_modules",
+    "test-results",
+    "test/e2e/.temp-work-dir",
+    "test/e2e/wiremock-recordings",
+    "tsconfig.tsbuildinfo"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": 2020,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "rules": {}
+}

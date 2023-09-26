@@ -1,0 +1,15 @@
+node_modules
+.yarn
+.pnp.*
+
+.env
+.vscode
+
+build
+tsconfig.tsbuildinfo
+
+test/e2e/.temp-work-dir
+test/e2e/wiremock-recordings
+test-results
+
+coverage

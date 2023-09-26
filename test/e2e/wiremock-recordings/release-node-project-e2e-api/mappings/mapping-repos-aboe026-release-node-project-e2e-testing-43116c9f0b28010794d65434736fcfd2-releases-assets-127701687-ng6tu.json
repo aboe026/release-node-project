@@ -1,0 +1,34 @@
+{
+  "id": "4997971b-cc21-3195-a478-b44da69c7acb",
+  "request": {
+    "url": "/repos/aboe026/release-node-project-e2e-testing-43116c9f0b28010794d65434736fcfd2/releases/assets/127701687",
+    "method": "GET"
+  },
+  "response": {
+    "status": 200,
+    "bodyFileName": "body-repos-aboe026-release-node-project-e2e-testing-43116c9f0b28010794d65434736fcfd2-releases-assets-127701687-ng6tu.txt",
+    "headers": {
+      "Server": "GitHub.com",
+      "Date": "Mon, 25 Sep 2023 23:08:49 GMT",
+      "Content-Type": "text/html;charset=utf-8",
+      "Location": "https://objects.githubusercontent.com/github-production-release-asset-2e65be/696520775/e5794c33-7be6-49d7-a9b3-9d0254b4a9fe?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAIWNJYAX4CSVEH53A%2F20230925%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20230925T230849Z&X-Amz-Expires=300&X-Amz-Signature=b0080808229919f1d52b3eff04a982b3b942223f30e2ca500d4c609bf1defeae&X-Amz-SignedHeaders=host&actor_id=11340779&key_id=0&repo_id=696520775&response-content-disposition=attachment%3B%20filename%3Ddeliverable.txt&response-content-type=application%2Foctet-stream",
+      "x-github-api-version-selected": "2022-11-28",
+      "X-RateLimit-Limit": "5000",
+      "X-RateLimit-Remaining": "4938",
+      "X-RateLimit-Reset": "1695686769",
+      "X-RateLimit-Used": "62",
+      "X-RateLimit-Resource": "core",
+      "Access-Control-Expose-Headers": "ETag, Link, Location, Retry-After, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Used, X-RateLimit-Resource, X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval, X-GitHub-Media-Type, X-GitHub-SSO, X-GitHub-Request-Id, Deprecation, Sunset",
+      "Access-Control-Allow-Origin": "*",
+      "Strict-Transport-Security": "max-age=31536000; includeSubdomains; preload",
+      "X-Frame-Options": "deny",
+      "X-Content-Type-Options": "nosniff",
+      "X-XSS-Protection": "0",
+      "Referrer-Policy": "origin-when-cross-origin, strict-origin-when-cross-origin",
+      "Content-Security-Policy": "default-src 'none'",
+      "Vary": "Accept-Encoding, Accept, X-Requested-With",
+      "X-GitHub-Request-Id": "D36F:9386:D02AEC:D5136C:65121301"
+    }
+  },
+  "uuid": "4997971b-cc21-3195-a478-b44da69c7acb"
+}
